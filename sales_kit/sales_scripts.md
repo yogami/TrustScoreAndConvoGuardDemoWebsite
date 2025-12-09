@@ -7,12 +7,12 @@
 
 Hi [Name],
 
-I built Berlin's first Health AI compliance stack to handle the upcoming EU AI Act requirements:
+I built a new toolkit to help Berlin HealthTechs prepare for the upcoming EU AI Act:
 
-*   **TRUSTSCORE:** Public reputation scores (See Ada Health: 95/100 verified)
-*   **CONVOGUARD:** Real-time conversation validation (suicide -> BLOCK, audit-ready CSV)
+*   **TRUSTSCORE:** Public readiness indicators (Example: "95/100 Readiness")
+*   **CONVOGUARD:** Real-time safety validation (Detects self-harm risks, exports logs for review)
 
-Both are live on Railway right now.
+Both are live prototypes on Railway.
 
 Can I show you a 30min demo?
 

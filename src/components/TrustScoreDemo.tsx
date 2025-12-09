@@ -37,8 +37,8 @@ export default function TrustScoreDemo() {
                     {/* Badge Card */}
                     <div className="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-900 dark:border-gray-700 w-full max-w-sm">
                         <div className="flex items-center justify-between mb-4">
-                            <span className="text-xl font-bold dark:text-white">Ada Health</span>
-                            <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Verified</span>
+                            <span className="text-xl font-bold dark:text-white">Example App</span>
+                            <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Demo Mode</span>
                         </div>
                         <div className="flex justify-center items-center my-4">
                             <div className="relative w-32 h-32">
@@ -68,8 +68,8 @@ export default function TrustScoreDemo() {
                                 </svg>
                             </div>
                         </div>
-                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">GDPR Compliant • MDR Class IIa</p>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">Last audited: {new Date().toLocaleDateString()}</div>
+                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Checks: GDPR, MDR Readiness</p>
+                        <div className="text-sm text-gray-500 dark:text-gray-400">Last scan: {new Date().toLocaleDateString()}</div>
                     </div>
 
                     {/* QR Code Placeholder */}

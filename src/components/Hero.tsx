@@ -8,7 +8,7 @@ export default function Hero() {
                     TrustScore + ConvoGuard AI = <span className="text-blue-600 dark:text-blue-500">Health AI Compliance Stack</span>
                 </h1>
                 <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">
-                    Complete audit trail for EU AI Act/DiGA compliance. Public reputation scores + Real-time content validation.
+                    Automated audit trails to support EU AI Act/DiGA compliance. Public reputation scores + Real-time content validation.
                 </p>
                 <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
                     <a href="#demo" className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">

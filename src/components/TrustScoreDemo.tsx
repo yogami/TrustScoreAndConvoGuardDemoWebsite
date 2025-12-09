@@ -1,6 +1,34 @@
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 
 export default function TrustScoreDemo() {
+    const [score, setScore] = useState(95);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const fetchScore = async () => {
+            const apiUrl = process.env.NEXT_PUBLIC_TRUSTSCORE_API_URL;
+            const agentId = process.env.NEXT_PUBLIC_DEMO_AGENT_ID;
+
+            if (apiUrl && agentId) {
+                setLoading(true);
+                try {
+                    const res = await fetch(`${apiUrl}/api/trustscore/${agentId}`);
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data.score) setScore(data.score);
+                    }
+                } catch (error) {
+                    console.error("Failed to fetch TrustScore", error);
+                } finally {
+                    setLoading(false);
+                }
+            }
+        };
+
+        fetchScore();
+    }, []);
+
     return (
         <div id="demo" className="py-12 bg-gray-50 dark:bg-gray-800">
             <div className="max-w-screen-xl mx-auto px-4 text-center">
@@ -25,8 +53,8 @@ export default function TrustScoreDemo() {
                                         strokeWidth="3"
                                     />
                                     <path
-                                        className="text-green-500"
-                                        strokeDasharray="95, 100"
+                                        className={loading ? "text-gray-400" : (score > 80 ? "text-green-500" : "text-yellow-500")}
+                                        strokeDasharray={`${score}, 100`}
                                         d="M18 2.0845
                                 a 15.9155 15.9155 0 0 1 0 31.831
                                 a 15.9155 15.9155 0 0 1 0 -31.831"
@@ -34,12 +62,14 @@ export default function TrustScoreDemo() {
                                         stroke="currentColor"
                                         strokeWidth="3"
                                     />
-                                    <text x="18" y="20.35" className="text-3xl font-bold dark:text-white" textAnchor="middle" fill="currentColor">95</text>
+                                    <text x="18" y="20.35" className="text-3xl font-bold dark:text-white" textAnchor="middle" fill="currentColor">
+                                        {loading ? "..." : score}
+                                    </text>
                                 </svg>
                             </div>
                         </div>
                         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">GDPR Compliant • MDR Class IIa</p>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">Last audited: Today</div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400">Last audited: {new Date().toLocaleDateString()}</div>
                     </div>
 
                     {/* QR Code Placeholder */}
@@ -47,7 +77,7 @@ export default function TrustScoreDemo() {
                         <div className="w-48 h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center mb-4 rounded">
                             <p className="text-gray-500 dark:text-gray-400">[QR Code Here]</p>
                         </div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">Scan to see verified public profile</p>
+                        <p className="text-sm text-sm text-gray-500 dark:text-gray-400">Scan to see verified public profile</p>
                     </div>
                 </div>
             </div>

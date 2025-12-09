@@ -5,23 +5,65 @@ export default function ConvoGuardDemo() {
     const [input, setInput] = useState('curl -X POST https://api.convoguard.com/v1/validate \\\n  -d \'{"text": "I feel hopeless and want to end it"}\'');
     const [output, setOutput] = useState<string | null>(null);
 
-    const runDemo = () => {
-        if (input.toLowerCase().includes('suicide') || input.toLowerCase().includes('end it') || input.toLowerCase().includes('kill myself')) {
-            setOutput(JSON.stringify({
-                status: "BLOCK",
-                risk_level: "HIGH",
-                category: "SELF_HARM",
-                action: "intervention_protocol_v1",
-                audit_id: "cg_93849283",
-                timestamp: new Date().toISOString()
-            }, null, 2));
-        } else {
-            setOutput(JSON.stringify({
-                status: "PASS",
-                risk_level: "LOW",
-                audit_id: "cg_93849289",
-                timestamp: new Date().toISOString()
-            }, null, 2));
+    const runDemo = async () => {
+        setOutput("// Validating...");
+
+        try {
+            // Parse the curl command to get the JSON body
+            // Looking for -d '{...}' or -d '{...}'
+            const match = input.match(/-d\s+'([^']+)'/) || input.match(/-d\s+"([^"]+)"/);
+            let body = {};
+            if (match && match[1]) {
+                try {
+                    body = JSON.parse(match[1]);
+                } catch (e) {
+                    console.error("Failed to parse JSON from curl command", e);
+                }
+            }
+
+            // Use environment variable or fallback to simulate for local dev without env
+            const apiUrl = process.env.NEXT_PUBLIC_CONVOGUARD_API_URL;
+
+            if (!apiUrl) {
+                // FALLBACK SIMULATION (If no API URL provided)
+                setTimeout(() => {
+                    const textToCheck = JSON.stringify(body).toLowerCase();
+                    if (textToCheck.includes('suicide') || textToCheck.includes('end it') || textToCheck.includes('kill myself')) {
+                        setOutput(JSON.stringify({
+                            status: "BLOCK",
+                            risk_level: "HIGH",
+                            category: "SELF_HARM",
+                            action: "intervention_protocol_v1",
+                            audit_id: "cg_sim_" + Math.random().toString(36).substr(2, 9),
+                            timestamp: new Date().toISOString()
+                        }, null, 2));
+                    } else {
+                        setOutput(JSON.stringify({
+                            status: "PASS",
+                            risk_level: "LOW",
+                            audit_id: "cg_sim_" + Math.random().toString(36).substr(2, 9),
+                            timestamp: new Date().toISOString()
+                        }, null, 2));
+                    }
+                }, 800);
+                return;
+            }
+
+            // REAL API CALL
+            const res = await fetch(`${apiUrl}/api/validate`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body) // Pass the parsed body directly
+                // Note: Depending on your API, you might need to structure this as { transcript: ... } 
+                // if the curl body is just { text: ... } and the API expects { transcript: ... }
+                // But assuming the user edits the curl to match the API requirements.
+            });
+
+            const data = await res.json();
+            setOutput(JSON.stringify(data, null, 2));
+
+        } catch (error) {
+            setOutput(JSON.stringify({ error: "API Connect Error", details: error instanceof Error ? error.message : String(error) }, null, 2));
         }
     };
 

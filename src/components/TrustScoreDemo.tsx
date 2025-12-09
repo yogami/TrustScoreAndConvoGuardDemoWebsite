@@ -1,0 +1,56 @@
+import React from 'react';
+
+export default function TrustScoreDemo() {
+    return (
+        <div id="demo" className="py-12 bg-gray-50 dark:bg-gray-800">
+            <div className="max-w-screen-xl mx-auto px-4 text-center">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">TrustScore: Public Reputation</h2>
+                <div className="flex justify-center items-center gap-8 flex-col md:flex-row">
+                    {/* Badge Card */}
+                    <div className="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-900 dark:border-gray-700 w-full max-w-sm">
+                        <div className="flex items-center justify-between mb-4">
+                            <span className="text-xl font-bold dark:text-white">Ada Health</span>
+                            <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Verified</span>
+                        </div>
+                        <div className="flex justify-center items-center my-4">
+                            <div className="relative w-32 h-32">
+                                <svg className="w-full h-full" viewBox="0 0 36 36">
+                                    <path
+                                        className="text-gray-200 dark:text-gray-700"
+                                        d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="3"
+                                    />
+                                    <path
+                                        className="text-green-500"
+                                        strokeDasharray="95, 100"
+                                        d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="3"
+                                    />
+                                    <text x="18" y="20.35" className="text-3xl font-bold dark:text-white" textAnchor="middle" fill="currentColor">95</text>
+                                </svg>
+                            </div>
+                        </div>
+                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">GDPR Compliant • MDR Class IIa</p>
+                        <div className="text-sm text-gray-500 dark:text-gray-400">Last audited: Today</div>
+                    </div>
+
+                    {/* QR Code Placeholder */}
+                    <div className="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-900 dark:border-gray-700 w-full max-w-sm flex flex-col items-center">
+                        <div className="w-48 h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center mb-4 rounded">
+                            <p className="text-gray-500 dark:text-gray-400">[QR Code Here]</p>
+                        </div>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Scan to see verified public profile</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}

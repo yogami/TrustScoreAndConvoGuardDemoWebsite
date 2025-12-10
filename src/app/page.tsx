@@ -30,6 +30,7 @@ export default function Home() {
       <ConvoGuardDemo />
       <Pricing />
       <CTA />
+      <Footer />
     </main>
   );
 }

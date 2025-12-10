@@ -42,14 +42,11 @@ jobs:
         run: npx remotion render ConvoGuardDemo ../public/videos/convoGuard.mp4 --codec=h264 --gl=sw --concurrency=1
 
       - name: Commit and Push Videos
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/videos/*.mp4
-          # Only commit if there are changes
-          if git diff --staged --quiet; then
-            echo "No changes to videos"
-          else
-            git commit -m "chore(assets): update rendered demo videos [skip ci]"
-            git push
-          fi
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(assets): update rendered demo videos [skip ci]"
+          file_pattern: "public/videos/*.mp4"
+          branch: main
+          skip_fetch: true
+          # Optional: Use a Personal Access Token if the default token fails (usually default is fine if permissions are set)
+

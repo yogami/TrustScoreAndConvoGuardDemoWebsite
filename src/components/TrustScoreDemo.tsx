@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import QRCode from 'react-qr-code';
 
 export default function TrustScoreDemo() {
     const [score, setScore] = useState(95);
@@ -74,8 +75,13 @@ export default function TrustScoreDemo() {
 
                     {/* QR Code Placeholder */}
                     <div className="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-900 dark:border-gray-700 w-full max-w-sm flex flex-col items-center">
-                        <div className="w-48 h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center mb-4 rounded">
-                            <p className="text-gray-500 dark:text-gray-400">[QR Code Here]</p>
+                        <div className="bg-white p-4 rounded mb-4">
+                            <QRCode
+                                value={`https://compliance-stack-berlin.up.railway.app/?source=qr&score=${score}`}
+                                size={128}
+                                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                                viewBox={`0 0 128 128`}
+                            />
                         </div>
                         <p className="text-sm text-sm text-gray-500 dark:text-gray-400">Scan to see verified public profile</p>
                     </div>

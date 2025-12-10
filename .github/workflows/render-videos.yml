@@ -11,6 +11,7 @@ on:
 jobs:
   render-videos:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: write # Needed to commit changes
     
@@ -32,6 +33,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y ffmpeg libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libgbm1 libasound2 libpangocairo-1.0-0 libxss1 libgtk-3-0
+          ffmpeg -version
 
       - name: Render TrustScore Video
         working-directory: ./videos

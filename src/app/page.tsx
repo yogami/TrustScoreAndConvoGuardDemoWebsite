@@ -13,7 +13,7 @@ export default function Home() {
 
       <section id="demo-videos" className="w-full bg-gray-50 dark:bg-gray-800 py-10">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">See it in Action</h2>
+          <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">Live Product Demos</h2>
           <p className="text-gray-500 dark:text-gray-400">Live generated demos of our compliance engine.</p>
         </div>
         <VideoDemo

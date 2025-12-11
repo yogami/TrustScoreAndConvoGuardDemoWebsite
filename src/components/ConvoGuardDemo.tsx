@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 export default function ConvoGuardDemo() {
-    const [input, setInput] = useState('curl -X POST https://api.convoguard.com/v1/validate \\\n  -d \'{"text": "I feel hopeless and want to end it"}\'');
+    const [input, setInput] = useState('curl -X POST https://api.convoguard.com/v1/validate \\\n  -d \'{"text": "User: I am feeling great today!"}\'');
     const [output, setOutput] = useState<string | null>(null);
 
     const runDemo = async () => {
@@ -19,6 +19,9 @@ export default function ConvoGuardDemo() {
                 } catch (e) {
                     console.error("Failed to parse JSON from curl command", e);
                 }
+            } else if (!input.trim().startsWith('curl')) {
+                // Assume plain text input if it doesn't start with curl
+                body = { transcript: input.trim() };
             }
 
             // Use environment variable or fallback to simulate for local dev without env
@@ -49,14 +52,11 @@ export default function ConvoGuardDemo() {
                 return;
             }
 
-            // REAL API CALL
-            const res = await fetch(`${apiUrl}/api/validate`, {
+            // Use local proxy to avoid CORS issues
+            const res = await fetch('/api/proxy', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(body) // Pass the parsed body directly
-                // Note: Depending on your API, you might need to structure this as { transcript: ... } 
-                // if the curl body is just { text: ... } and the API expects { transcript: ... }
-                // But assuming the user edits the curl to match the API requirements.
+                body: JSON.stringify(body)
             });
 
             const data = await res.json();

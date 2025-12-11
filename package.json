@@ -8,8 +8,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -H 0.0.0.0 -p ${PORT:-3000}",
-    "lint": "eslint"
+    "start": "node .next/standalone/server.js",
+    "lint": "next lint"
   },
   "dependencies": {
     "next": "16.0.8",

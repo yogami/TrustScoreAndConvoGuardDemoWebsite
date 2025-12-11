@@ -77,7 +77,7 @@ export default function TrustScoreDemo() {
                     <div className="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-900 dark:border-gray-700 w-full max-w-sm flex flex-col items-center">
                         <div className="bg-white p-4 rounded mb-4">
                             <QRCode
-                                value={`https://compliance-stack-berlin.up.railway.app/?source=qr&score=${score}`}
+                                value="https://compliance-stack-berlin.up.railway.app/certificate?score=95"
                                 size={128}
                                 style={{ height: "auto", maxWidth: "100%", width: "100%" }}
                                 viewBox={`0 0 128 128`}

@@ -25,12 +25,6 @@ export default function ConvoGuardDemo() {
             });
             const data = await res.json();
 
-            // FORCE DEMO FAIL for known bad inputs (if backend misses it)
-            if (userMsg.toLowerCase().includes('fentanyl') || userMsg.toLowerCase().includes('kill myself')) {
-                data.status = 'BLOCK';
-                data.category = 'SELF_HARM';
-            }
-
             if (data.status === 'BLOCK' || (data.compliant === false)) {
                 setMessages(prev => [...prev, {
                     role: 'system',

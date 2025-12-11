@@ -17,7 +17,7 @@ export default function Home() {
           <p className="text-gray-500 dark:text-gray-400">Live generated demos of our compliance engine.</p>
         </div>
         <VideoDemo
-          src="/videos/trustscore.webp"
+          src="/videos/trustscore_home.webp"
           title="TrustScore: Instant Readiness Check"
         />
         <VideoDemo

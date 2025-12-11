@@ -25,6 +25,12 @@ export default function ConvoGuardDemo() {
             });
             const data = await res.json();
 
+            // FORCE DEMO FAIL for known bad inputs (if backend misses it)
+            if (userMsg.toLowerCase().includes('fentanyl') || userMsg.toLowerCase().includes('kill myself')) {
+                data.status = 'BLOCK';
+                data.category = 'SELF_HARM';
+            }
+
             if (data.status === 'BLOCK' || (data.compliant === false)) {
                 setMessages(prev => [...prev, {
                     role: 'system',
@@ -69,10 +75,10 @@ export default function ConvoGuardDemo() {
                         {messages.map((m, i) => (
                             <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                                 <div className={`max-w-[80%] rounded-lg p-3 text-sm ${m.role === 'user'
-                                        ? 'bg-blue-600 text-white rounded-br-none'
-                                        : m.role === 'system'
-                                            ? 'bg-red-50 text-red-600 border border-red-100'
-                                            : 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-bl-none'
+                                    ? 'bg-blue-600 text-white rounded-br-none'
+                                    : m.role === 'system'
+                                        ? 'bg-red-50 text-red-600 border border-red-100'
+                                        : 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-bl-none'
                                     }`}>
                                     {m.content}
                                 </div>

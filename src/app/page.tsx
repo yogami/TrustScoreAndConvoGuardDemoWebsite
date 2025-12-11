@@ -17,11 +17,11 @@ export default function Home() {
           <p className="text-gray-500 dark:text-gray-400">Live generated demos of our compliance engine.</p>
         </div>
         <VideoDemo
-          src="/videos/trustscore_home.webp"
+          src="/videos/trustscore_home.webp?v=2"
           title="TrustScore: Instant Readiness Check"
         />
         <VideoDemo
-          src="/videos/convoguard.webp"
+          src="/videos/convoguard.webp?v=2"
           title="ConvoGuard: Real-time Safety Filter"
         />
       </section>

@@ -1,8 +1,8 @@
 'use client';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-export default function CertificatePage() {
+function CertificateContent() {
     const searchParams = useSearchParams();
     const score = searchParams.get('score') || '95';
     const company = "Example Health App";
@@ -51,5 +51,13 @@ export default function CertificatePage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function CertificatePage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading Certificate...</div>}>
+            <CertificateContent />
+        </Suspense>
     );
 }

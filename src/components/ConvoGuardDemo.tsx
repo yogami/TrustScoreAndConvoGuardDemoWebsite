@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 export default function ConvoGuardDemo() {
-    const [input, setInput] = useState('curl -X POST https://api.convoguard.com/v1/validate \\\n  -d \'{"text": "User: I am feeling great today!"}\'');
+    const [input, setInput] = useState('curl -X POST https://api.convoguard.com/v1/validate \\\n  -d \'{"transcript": "User: I am feeling great today!"}\'');
     const [output, setOutput] = useState<string | null>(null);
 
     const runDemo = async () => {
@@ -10,17 +10,18 @@ export default function ConvoGuardDemo() {
 
         try {
             // Parse the curl command to get the JSON body
-            // Looking for -d '{...}' or -d '{...}'
             const match = input.match(/-d\s+'([^']+)'/) || input.match(/-d\s+"([^"]+)"/);
-            let body = {};
+            let body: any = {};
             if (match && match[1]) {
                 try {
-                    body = JSON.parse(match[1]);
+                    const parsed = JSON.parse(match[1]);
+                    // Map 'text' to 'transcript' if present, otherwise keep as is
+                    body = { transcript: parsed.text || parsed.transcript || parsed.message };
                 } catch (e) {
-                    console.error("Failed to parse JSON from curl command", e);
+                    console.error("Failed to parse JSON", e);
                 }
             } else if (!input.trim().startsWith('curl')) {
-                // Assume plain text input if it doesn't start with curl
+                // Assume plain text input
                 body = { transcript: input.trim() };
             }
 

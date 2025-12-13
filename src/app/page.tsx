@@ -1,7 +1,5 @@
 import Hero from "@/components/Hero";
 import VideoDemo from "@/components/VideoDemo";
-import TrustScoreDemo from "@/components/TrustScoreDemo";
-import ConvoGuardDemo from "@/components/ConvoGuardDemo";
 import Pricing from "@/components/Pricing";
 import CTA from "@/components/CTA";
 import Footer from '@/components/Footer';
@@ -17,17 +15,15 @@ export default function Home() {
           <p className="text-gray-500 dark:text-gray-400">Live generated demos of our compliance engine.</p>
         </div>
         <VideoDemo
-          src="/videos/trustscore_home_v5.webp"
+          src="/videos/trustscore_dashboard.webp"
           title="TrustScore: Dashboard & Verification"
         />
         <VideoDemo
-          src="/videos/convoguard_v3.webp"
+          src="/videos/convoguard_prod.webp"
           title="ConvoGuard: Real-time Safety Filter"
         />
       </section>
 
-      <TrustScoreDemo />
-      <ConvoGuardDemo />
       <Pricing />
       <CTA />
       <Footer />

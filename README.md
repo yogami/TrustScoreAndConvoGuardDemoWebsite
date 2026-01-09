@@ -8,39 +8,71 @@ It is governed by the global rules in **[berlin-ai-infra](https://github.com/yog
 
 ---
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Trust Score & ConvoGuard Demo Website
 
-## Getting Started
+> Interactive demo website showcasing the AgentOps Trust Scorecard and ConvoGuard compliance features.
 
-First, run the development server:
+## 🎯 What This Does
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+This is a demonstration frontend for two core Berlin AI products:
+- **Trust Scorecard**: Visual dashboard showing AI agent reputation, compliance badges, and trust metrics
+- **ConvoGuard Demo**: Interactive API test console for the compliance guardrails service
+
+## 📡 Pages
+
+| Route | Description |
+| :--- | :--- |
+| `/` | Landing page with product overview |
+| `/trustscore` | Interactive Trust Score dashboard |
+| `/convoguard` | ConvoGuard API demo console |
+| `/combined` | Side-by-side comparison view |
+
+## 🏗️ Architecture
+
+```
+src/
+├── app/
+│   ├── page.tsx           # Landing page
+│   ├── trustscore/        # Trust Score demo
+│   ├── convoguard/        # ConvoGuard demo
+│   └── combined/          # Combined view
+├── components/
+│   ├── TrustScoreCard.tsx
+│   ├── ComplianceBadge.tsx
+│   └── ApiTestConsole.tsx
+└── lib/
+    └── api-client.ts      # Backend integration
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Quick Start
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Install dependencies
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Start development server
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000) to view the demo.
 
-To learn more about Next.js, take a look at the following resources:
+## 🔗 Dependencies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Service | Purpose | Production URL |
+| :--- | :--- | :--- |
+| ConvoGuard AI | Compliance validation API | `https://convo-guard-ai-production.up.railway.app` |
+| Agent Trust Protocol | Trust score data | `https://agent-trust-protocol-production.up.railway.app` |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📊 Status
 
-## Deploy on Vercel
+- **Deployment**: Railway
+- **Production URL**: `https://trust-score-demo-production.up.railway.app`
+- **Purpose**: Demo/Marketing (not a production service)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎨 Design
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The demo uses the Berlin AI brand colors and follows the enterprise aesthetic established in the main product suite.
+
+## 📜 License
+
+MIT
